@@ -14,7 +14,7 @@
 
     $diff = date_diff($currentTime, $newYear);
 
-    var_dump($diff);
+    //var_dump($diff);
 
     $days = $diff->format('%a');
     $hourss = $diff->format('%m');
