@@ -17,6 +17,6 @@
 
 <?php if (isset($output)) : ?>
 
-<div><?= $inputStr.$output?> </div>
+<div><?= $output?> </div>
 
 <?php endif;?>

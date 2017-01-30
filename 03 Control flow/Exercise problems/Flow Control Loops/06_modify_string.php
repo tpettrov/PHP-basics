@@ -15,10 +15,11 @@ if (isset($_GET['submit']) && (!empty($_GET['input']))) {
 
         case 'palindrome':
             if (isPalindrome($inputStr)) {
-                $output = 'is Palindrome';
-            }else $output = 'is not Palindrome';
+                $output = "$inputStr is Palindrome!";
+            } else $output = "$inputStr is not Palindrome!";
             break;
         case 'reverse':
+            $output = strrev($inputStr);
             break;
         case 'split':
             break;
@@ -26,7 +27,8 @@ if (isset($_GET['submit']) && (!empty($_GET['input']))) {
             break;
         case 'shuffle':
             break;
-        default: break;
+        default:
+            break;
 
     }
 
@@ -40,14 +42,12 @@ function isPalindrome($str)
     $strToArr = str_split($str);
     $strLen = count($strToArr);
 
-    for ($i=0; $i < $strLen/2; $i++){
+    for ($i = 0; $i < $strLen / 2; $i++) {
 
-        if ($strToArr[$i] == $strToArr[($strLen-1) - $i]) {
+        if ($strToArr[$i] == $strToArr[($strLen - 1) - $i]) {
 
             return true;
-        }
-
-        else return false;
+        } else return false;
 
     }
 
