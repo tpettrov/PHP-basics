@@ -20,3 +20,9 @@
 <div><?= $output?> </div>
 
 <?php endif;?>
+
+<?php if (isset($error)) : ?>
+
+    <div><?= $error?> </div>
+
+<?php endif;?>

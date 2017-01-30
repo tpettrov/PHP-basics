@@ -6,7 +6,7 @@
  * Time: 1:21 PM
  */
 
-if (isset($_GET['submit']) && (!empty($_GET['input']))) {
+if (isset($_GET['submit']) && (!empty($_GET['input'])) && isset($_GET['radio'])) {
 
     $inputStr = $_GET['input'];
     $command = $_GET['radio'];
@@ -21,11 +21,14 @@ if (isset($_GET['submit']) && (!empty($_GET['input']))) {
         case 'reverse':
             $output = strrev($inputStr);
             break;
-        case 'split': $output = splitter($inputStr);
+        case 'split':
+            $output = splitter($inputStr);
             break;
         case 'hash':
+            $output = crypt($inputStr, 'salt');
             break;
         case 'shuffle':
+            $output = str_shuffle($inputStr);
             break;
         default:
             break;
@@ -33,7 +36,10 @@ if (isset($_GET['submit']) && (!empty($_GET['input']))) {
     }
 
 
+} else {
+    $error = 'Празен стринг или не избрана функция. Мързи ме да деля ивентите ;)';
 }
+
 
 include '06_modify_string_html.php';
 
@@ -53,7 +59,8 @@ function isPalindrome($str)
 
 }
 
-function splitter($str){
+function splitter($str)
+{
 
     $arrayForPrint = array_filter(str_split($str));
     return implode(' ', $arrayForPrint);
