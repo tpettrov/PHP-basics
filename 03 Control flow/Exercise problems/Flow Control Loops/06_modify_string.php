@@ -21,7 +21,7 @@ if (isset($_GET['submit']) && (!empty($_GET['input']))) {
         case 'reverse':
             $output = strrev($inputStr);
             break;
-        case 'split':
+        case 'split': $output = splitter($inputStr);
             break;
         case 'hash':
             break;
@@ -51,5 +51,11 @@ function isPalindrome($str)
 
     }
 
+}
+
+function splitter($str){
+
+    $arrayForPrint = array_filter(str_split($str));
+    return implode(' ', $arrayForPrint);
 }
 
