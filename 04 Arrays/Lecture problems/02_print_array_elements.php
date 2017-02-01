@@ -1,3 +1,16 @@
+<form method="get">
+    <div>
+        Input string:
+        <input type="text" name="input">
+
+    </div>
+
+    <input type="submit" name="submit" value="Submit">
+
+</form>
+
+
+
 <?php
 /**
  * Created by PhpStorm.
