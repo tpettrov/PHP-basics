@@ -24,7 +24,6 @@ $string2 = $input[1];
 //$string1 = 'I love programming';
 //$string2 = 'Learn Java or C#';
 
-
 $largestCommonEnd = 0;
 $currentLargestCommonEnd = 0;
 $largestCommonEndR = 0;
@@ -66,11 +65,3 @@ for ($i=0; $i < $sizeToIterate; $i++) {
 }
 
 echo max($largestCommonEnd, $largestCommonEndR);
-
-
-
-
-
-
-
-
