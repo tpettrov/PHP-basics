@@ -16,6 +16,8 @@ $item = $inputR[0];
 $count = 1;
 $countMax = 0;
 
+$resultArr = [];
+
 for($i = 1; $i < count($inputR); $i++) {
 
     if ($inputR[$i] == $item) {
@@ -37,7 +39,8 @@ for($i = 1; $i < count($inputR); $i++) {
 
 for($j = 0; $j < $countMax; $j++) {
 
-    echo ' ';
-    echo $itemMax;
+    array_push($resultArr, $itemMax);
 
 }
+
+echo implode(' ', $resultArr);
