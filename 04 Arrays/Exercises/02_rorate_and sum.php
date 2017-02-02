@@ -46,8 +46,6 @@ function switchPlaces($arr, $count)
     $last = array_pop($arr);
     array_unshift($arr, $last);
 
-    
-
     return $arr;
 
 }
