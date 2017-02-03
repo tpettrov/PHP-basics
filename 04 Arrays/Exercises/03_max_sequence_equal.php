@@ -6,16 +6,14 @@
  * Time: 4:04 PM
  */
 
-
 $input = explode(' ', trim(fgets(STDIN)));
-//$input = explode(' ', '0 1 1 5 2 2 6 3 3');
+//$input = explode(' ', '1 2');
 $inputR = array_reverse($input);
-
 
 $item = $inputR[0];
 $count = 1;
-$countMax = 0;
-
+$countMax = 1;
+//$itemMax = $item;
 $resultArr = [];
 
 for($i = 1; $i < count($inputR); $i++) {
@@ -34,13 +32,21 @@ for($i = 1; $i < count($inputR); $i++) {
 
         $item = $inputR[$i];
         $count = 1;
+        //$itemMax = $item;
+
     }
 }
 
-for($j = 0; $j < $countMax; $j++) {
+if (count($inputR) == 1) {
 
-    array_push($resultArr, $itemMax);
+    echo $inputR[0];
 
+} else {
+
+    for ($j = 0; $j < $countMax; $j++) {
+
+        array_push($resultArr, $itemMax);
+    }
+
+    echo implode(' ', $resultArr);
 }
-
-echo implode(' ', $resultArr);
