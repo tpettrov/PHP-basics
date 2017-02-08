@@ -6,8 +6,8 @@
  * Time: 11:22 AM
  */
 
-$input = explode(' ', trim(fgets(STDIN)));
-//$input = explode(' ', '0 1 1 2 2 3 3');
+//$input = explode(' ', trim(fgets(STDIN)));
+$input = explode(' ', '3 2 3 4 2 2 4');
 
 $currentEm = intval($input[0]);
 $currentLen = 1;
