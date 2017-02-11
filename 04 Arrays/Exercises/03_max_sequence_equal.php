@@ -7,46 +7,36 @@
  */
 
 $input = explode(' ', trim(fgets(STDIN)));
-//$input = explode(' ', '1 2');
-$inputR = array_reverse($input);
+//$input = explode(' ', '2 1 1 2 3 3 2 2 2 1');
 
-$item = $inputR[0];
-$count = 1;
-$countMax = 1;
-//$itemMax = $item;
-$resultArr = [];
+$inputR = array_map('intval', $input);
 
-for($i = 1; $i < count($inputR); $i++) {
+$size = count($input);
+$maxLength = 0;
 
-    if ($inputR[$i] == $item) {
 
-        $count++;
-        if ($count >= $countMax) {
+for ($i = 0; $i < $size; $i++) {
 
-            $countMax = $count;
-            $itemMax = $inputR[$i];
-        }
-    }
+   $currentLength = 1;
 
-    else {
+   for ($k = $i + 1; $k < $size; $k++) {
 
-        $item = $inputR[$i];
-        $count = 1;
-        //$itemMax = $item;
+       if ($inputR[$k] == $inputR[$i]) {
 
-    }
+           $currentLength++;
+
+       } else break;
+
+   }
+
+   if ($currentLength > $maxLength) {
+
+       $maxLength = $currentLength;
+       $num = $inputR[$i];
+   }
+
+
 }
 
-if (count($inputR) == 1) {
-
-    echo $inputR[0];
-
-} else {
-
-    for ($j = 0; $j < $countMax; $j++) {
-
-        array_push($resultArr, $itemMax);
-    }
-
-    echo implode(' ', $resultArr);
-}
+$resultArr = array_fill(0, $maxLength, $num);
+echo implode(' ', $resultArr);

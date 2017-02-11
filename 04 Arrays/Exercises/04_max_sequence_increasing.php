@@ -9,38 +9,36 @@
 //$input = explode(' ', trim(fgets(STDIN)));
 $input = explode(' ', '3 2 3 4 2 2 4');
 
-$currentEm = intval($input[0]);
-$currentLen = 1;
+$size = count($input);
+
 $startPos = 0;
-$maxLen = 1;
+$maxLen = 0;
 
-for($i = 1; $i < count($input); ++$i) {
+for ($i = 0; $i < $size; $i++) {
 
-    if ($input[$i] == $currentEm + 1) {
+    $currentLength = 1;
+    $current = $input[$i];
 
-        $currentEm = $input[$i];
-        $currentLen++;
+    for ($k = $i + 1; $k < $size; $k++) {
 
+        if ($input[$k] > $current) {
 
-        if ($currentLen > $maxLen) {
+            $currentLength++;
+            $current = $input[$k];
 
-            $maxLen = $currentLen;
-            $startPos = $i - ($currentLen - 1);
-
-        }
-
-    } else {
-
-        $currentEm = $input[$i];
-        $currentLen = 1;
-        //$startPos = $i;
+        } else break;
 
     }
 
+    if ($currentLength > $maxLen) {
+
+        $maxLen = $currentLength;
+        $startPos = $i;
+    }
+
+
 }
 
-//echo $startPos;
-//echo $maxLen;
 
-echo implode(' ', array_splice($input, $startPos, $maxLen));
+echo implode(' ', array_slice($input, $startPos, $maxLen));
 
