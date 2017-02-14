@@ -16,7 +16,7 @@ class Person
     public $age;
     public $name;
 
-    public function __construct(string $name, int $age)
+    public function __construct(string $name, string $age)
     {
 
         $this->name = $name;
