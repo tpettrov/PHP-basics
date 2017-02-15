@@ -43,7 +43,7 @@ class Engine
     public $displacement; // optional
     public $efficiency; // optional
 
-    public function __construct(string $model, string $power, string $displacement = null, string $efficiency = null)
+    public function __construct(string $model, int $power, string $displacement = null, string $efficiency = null)
     {
         $this->model = $model;
         $this->power = $power;
@@ -73,7 +73,7 @@ for ($i = 0; $i < $enginesCount; $i++) {
     $engineSpec = explode(' ', trim(fgets(STDIN)));
 
     $engineModel = $engineSpec[0];
-    $enginePower = $engineSpec[1];
+    $enginePower = intval($engineSpec[1]);
 
     // optional elements logic
 
@@ -125,7 +125,10 @@ for ($i = 0; $i < $carsCount; $i++) {
 
         if (is_numeric($carsSpec[2])) {
 
-            $carWeight = $carsSpec[2];
+            if($carsSpec[2] > 0) {
+
+                $carWeight = $carsSpec[2];
+            }
 
         } else {
 
