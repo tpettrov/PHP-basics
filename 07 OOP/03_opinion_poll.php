@@ -6,8 +6,6 @@
  * Time: 21:09
  */
 
-
-
 $n = trim(fgets(STDIN));
 
 $arr = [];
