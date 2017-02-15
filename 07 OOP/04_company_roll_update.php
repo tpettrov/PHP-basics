@@ -54,26 +54,13 @@ for ($i = 0; $i < $n; $i++) {
 
     $email = null;
     $age = null;
-    /*if (isset($inputArray[4]) && !is_numeric($inputArray[4])) {
+    if (isset($inputArray[4]) && !is_numeric($inputArray[4])) {
 
         $email = $inputArray[4];
         $age = isset($inputArray[5]) ? intval($inputArray[5]) : null;
     } else {
         if (isset($inputArray[4]))
             $age = intval($inputArray[4]);
-    }*/
-
-    if (isset($inputArray[4])) {
-        if (is_numeric($inputArray[4])) {
-            $age = intval($inputArray[4]);
-        } else {
-            $email = $inputArray[4];
-        }
-    }
-    if (isset($inputArray[5])) {
-        if (is_numeric($inputArray[5])) {
-            $age = intval($inputArray[5]);
-        }
     }
 
 
@@ -104,7 +91,7 @@ function calcBestDepartment($employeeArr)
     foreach ($departmentArr as $key=>$value) {
 
             $departmentArr[$key] = $value[0] / $value[1];
-        
+
     }
 
 
@@ -128,7 +115,7 @@ echo "Highest Average Salary: $department" . "\n";
 
 foreach ($employeeArr as $employee) {
 
-    if ($employee->department == calcBestDepartment($employeeArr)) {
+    if ($employee->department == $department) {
 
         echo $employee . "\n";
     }
