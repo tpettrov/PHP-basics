@@ -28,7 +28,7 @@ class Car
         $weight = $this->weight ? $this->weight : 'n/a';
         $color = $this->color ? $this->color : 'n/a';
 
-        $string = $this->model . ":" . PHP_EOL . $this->engine . PHP_EOL . 'Weight:' . $weight . PHP_EOL . 'Color:' . $color . PHP_EOL;
+        $string = $this->model . ":" . PHP_EOL . '  ' .$this->engine . PHP_EOL . '  ' . 'Weight: ' . $weight . PHP_EOL . '  ' . 'Color: ' . $color . PHP_EOL;
 
         return $string;
     }
@@ -58,7 +58,7 @@ class Engine
         $efficiency = $this->efficiency ? $this->efficiency : 'n/a';
         $displacement = $this->displacement ? $this->displacement : 'n/a';
 
-        $string = $this->model . ':' . PHP_EOL . 'Power:' . $this->power . PHP_EOL . 'Displacement:' . $displacement . PHP_EOL . 'Efficiency:' . $efficiency;
+        $string = $this->model . ':' . PHP_EOL . '    ' . 'Power: ' . $this->power . PHP_EOL . '    ' .  'Displacement: ' . $displacement . PHP_EOL  . '    ' .  'Efficiency: ' . $efficiency;
 
         return $string;
     }
@@ -135,7 +135,7 @@ for ($i = 0; $i < $carsCount; $i++) {
 
     if (isset($carsSpec[3])) {
 
-        $carColor = $engineSpec[3];
+        $carColor = $carsSpec[3];
     }
 
 
@@ -162,13 +162,13 @@ function getEngine($engineString, $arrayEngines)
 
 }
 
-var_dump($carsArr);
+//var_dump($carsArr);
 
-//foreach ($carsArr as $car) {
-//
-//    echo $car;
-//
-//}
+foreach ($carsArr as $car) {
+
+    echo $car;
+
+}
 
 
 
