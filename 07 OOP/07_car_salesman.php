@@ -23,6 +23,16 @@ class Car
 
     }
 
+    public function __toString()
+    {
+        $weight = $this->weight ? $this->weight : 'n/a';
+        $color = $this->color ? $this->color : 'n/a';
+
+        $string = $this->model . ":" . PHP_EOL . $this->engine . PHP_EOL . 'Weight:' . $weight . PHP_EOL . 'Color:' . $color . PHP_EOL;
+
+        return $string;
+    }
+
 }
 
 class Engine
@@ -42,12 +52,23 @@ class Engine
 
     }
 
+    public function __toString()
+    {
+
+        $efficiency = $this->efficiency ? $this->efficiency : 'n/a';
+        $displacement = $this->displacement ? $this->displacement : 'n/a';
+
+        $string = $this->model . ':' . PHP_EOL . 'Power:' . $this->power . PHP_EOL . 'Displacement:' . $displacement . PHP_EOL . 'Efficiency:' . $efficiency;
+
+        return $string;
+    }
+
 }
 
 $enginesCount = trim(fgets(STDIN));
 $enginesArr = [];
 
-for($i=0; $i < $enginesCount; $i++) {
+for ($i = 0; $i < $enginesCount; $i++) {
 
     $engineSpec = explode(' ', trim(fgets(STDIN)));
 
@@ -78,7 +99,7 @@ for($i=0; $i < $enginesCount; $i++) {
     }
 
 
-    array_push($enginesArr, new Engine($engineModel, $enginePower, $engineDisplacement, $engineEfficiency) );
+    array_push($enginesArr, new Engine($engineModel, $enginePower, $engineDisplacement, $engineEfficiency));
 
 }
 
@@ -88,7 +109,7 @@ $carsCount = trim(fgets(STDIN));
 $carsArr = [];
 
 
-for ($i=0; $i < $carsCount; $i ++) {
+for ($i = 0; $i < $carsCount; $i++) {
 
     $carsSpec = explode(' ', trim(fgets(STDIN)));
 
@@ -118,15 +139,15 @@ for ($i=0; $i < $carsCount; $i ++) {
     }
 
 
-
     array_push($carsArr, new Car($carModel, getEngine($carEngineString, $enginesArr), $carWeight, $carColor));
 
 
 }
 
-var_dump($carsArr);
+//var_dump($carsArr);
 
-function getEngine ($engineString, $arrayEngines){
+function getEngine($engineString, $arrayEngines)
+{
 
 
     foreach ($arrayEngines as $engine) {
@@ -140,6 +161,14 @@ function getEngine ($engineString, $arrayEngines){
 
 
 }
+
+var_dump($carsArr);
+
+//foreach ($carsArr as $car) {
+//
+//    echo $car;
+//
+//}
 
 
 
