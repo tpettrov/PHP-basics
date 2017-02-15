@@ -43,7 +43,7 @@ class Engine
     public $displacement; // optional
     public $efficiency; // optional
 
-    public function __construct(string $model, string $power, int $displacement = null, string $efficiency = null)
+    public function __construct(string $model, string $power, string $displacement = null, string $efficiency = null)
     {
         $this->model = $model;
         $this->power = $power;
@@ -98,8 +98,8 @@ for ($i = 0; $i < $enginesCount; $i++) {
         $engineEfficiency = $engineSpec[3];
     }
 
-
-    array_push($enginesArr, new Engine($engineModel, $enginePower, $engineDisplacement, $engineEfficiency));
+$engine = new Engine($engineModel, $enginePower, $engineDisplacement, $engineEfficiency);
+    $enginesArr[$engineModel] = $engine;
 
 }
 
@@ -137,30 +137,30 @@ for ($i = 0; $i < $carsCount; $i++) {
 
         $carColor = $carsSpec[3];
     }
-
-
-    array_push($carsArr, new Car($carModel, getEngine($carEngineString, $enginesArr), $carWeight, $carColor));
+//var_dump($enginesArr);
+    $carEngine = $enginesArr[$carEngineString];
+    array_push($carsArr, new Car($carModel,$carEngine, $carWeight, $carColor));
 
 
 }
 
 //var_dump($carsArr);
 
-function getEngine($engineString, $arrayEngines)
-{
-
-
-    foreach ($arrayEngines as $engine) {
-
-        if ($engine->model == $engineString) {
-
-            return $engine;
-        }
-
-    }
-
-
-}
+//function getEngine($engineString, $arrayEngines)
+//{
+//
+//
+//    foreach ($arrayEngines as $engine) {
+//
+//        if ($engine->model == $engineString) {
+//
+//            return $engine;
+//        }
+//
+//    }
+//
+//
+//}
 
 //var_dump($carsArr);
 
