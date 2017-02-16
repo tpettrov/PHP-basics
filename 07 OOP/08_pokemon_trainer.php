@@ -41,6 +41,33 @@ class Trainer
 
     }
 
+    public function badgesCount(){
+
+        return $this->badges;
+
+    }
+
+    public function pokemonsCount(){
+
+        return count($this->pokemons);
+
+    }
+
+    public function hurtPokemons()
+    {
+
+        foreach ($this->pokemons as $pokemon) {
+
+            $pokemon->damage();
+            if ($pokemon->health <= 0) {
+
+                $key = array_search($pokemon, $this->pokemons);
+                array_splice($this->pokemons, $key, 1);
+            }
+
+        }
+
+    }
 
 }
 
@@ -62,7 +89,7 @@ class Pokemon
     public function damage(){
 
         $this->health -= 10;
-        return $this->health;
+
 }
 
 }
@@ -117,7 +144,7 @@ while (true) {
 
             } else {
 
-                hurtPokemons($trainer->getPokemons(), $trainer);
+               $trainer->hurtPokemons();
             }
 
     }
@@ -142,19 +169,30 @@ $found = false;
 
 }
 
-function hurtPokemons (array $pokemonsOfTrainer, $trainer){
+//function hurtPokemons (array $pokemonsOfTrainer, $trainer){
+//
+//    foreach ($pokemonsOfTrainer as $pokemon) {
+//
+//        $pokemon->damage();
+//            if( $pokemon->health <= 0) {
+//
+//                $key = array_search($pokemon, $pokemonsOfTrainer );
+//                array_splice($trainer->getPokemons(), $key, 1);
+//                var_dump($key);
+//            }
+//
+//    }
+//}
 
-    foreach ($pokemonsOfTrainer as $pokemon) {
+usort($trainers, function($a, $b) {
 
-        $pokemon->damage();
-            if( $pokemon->health <= 0) {
+    return $a->badgesCount() < $b->badgesCount();
+});
 
-                $key = array_search($pokemon, $pokemonsOfTrainer );
-                array_splice($trainer->getPokemons(), $key, 1);
-                var_dump($key);
-            }
+foreach ($trainers as $trainer) {
 
-    }
+    echo "$trainer->name {$trainer->badgesCount()} {$trainer->pokemonsCount()}" . PHP_EOL;
+
 }
 
-print_r($trainers);
+//print_r($trainers);
