@@ -8,16 +8,21 @@
  */
 class Person
 {
-
+    private $name;
     private $company;
     private $car;
     private $pokemons = [];
     private $parents = [];
     private $children = [];
 
+    public function __construct($name)
+    {
 
+        $this->name = $name;
 
-    public function setCompany(string $companyName, string $department, int $salary)
+    }
+
+    public function setCompany(string $companyName, string $department, float $salary)
     {
 
         $this->company = new Company($companyName, $department, $salary);
@@ -52,6 +57,32 @@ class Person
 
     }
 
+    public function __toString()
+    {
+        $stringPokemon = '';
+        foreach ($this->pokemons as $pokemon) {
+
+            $stringPokemon .= $pokemon;
+        }
+
+        $stringParents = '';
+        foreach ($this->parents as $parent) {
+
+            $stringParents .= $parent;
+        }
+
+        $stringChildren = '';
+        foreach ($this->children as $child) {
+
+            $stringChildren .= $child;
+        }
+
+        $company = $this->company ? $this->company . PHP_EOL : null;
+
+        return $this->name . PHP_EOL . 'Company:' . PHP_EOL . $company . 'Car:' . PHP_EOL . $this->car . PHP_EOL
+            . 'Pokemon:' . PHP_EOL . $stringPokemon . 'Parents:' . PHP_EOL . $stringParents . 'Children:' . PHP_EOL . $stringChildren;
+    }
+
 
 }
 
@@ -68,6 +99,11 @@ class Car
         $this->carSpeed = $carSpeed;
 
     }
+
+    public function __toString()
+    {
+        return $this->carModel . " " . $this->carSpeed;
+    }
 }
 
 class Parrent
@@ -82,6 +118,11 @@ class Parrent
         $this->name = $name;
         $this->birthday = $birthday;
 
+    }
+
+    public function __toString()
+    {
+        return $this->name . " " . $this->birthday . PHP_EOL;
     }
 }
 
@@ -99,7 +140,13 @@ class Child
         $this->birthday = $birthday;
 
     }
+
+    public function __toString()
+    {
+        return $this->name . " " . $this->birthday . PHP_EOL;
+    }
 }
+
 class Pokemon
 {
 
@@ -113,6 +160,11 @@ class Pokemon
         $this->type = $type;
 
     }
+
+    public function __toString()
+    {
+        return $this->name . " " . $this->type . PHP_EOL;
+    }
 }
 
 class Company
@@ -122,11 +174,16 @@ class Company
     public $department;
     public $salary;
 
-    public function __construct(string $companyName,string $department, int $salary)
+    public function __construct(string $companyName, string $department, float $salary)
     {
         $this->companyName = $companyName;
         $this->department = $department;
         $this->salary = $salary;
+    }
+
+    public function __toString()
+    {
+        return $this->companyName . " " . $this->department . " " . number_format($this->salary, 2);
     }
 }
 
@@ -145,53 +202,58 @@ while (true) {
 
     switch ($property) {
 
-        case 'company': if(array_key_exists($name, $people)){
+        case 'company':
+            if (array_key_exists($name, $people)) {
 
-            $people[$name]->setCompany($input[2], $input[3], intval($input[4]));
-        } else {
+                $people[$name]->setCompany($input[2], $input[3], floatval($input[4]));
+            } else {
 
-            $people[$name] = new Person();
-            $people[$name]->setCompany($input[2], $input[3], intval($input[4]));
-        }
+                $people[$name] = new Person($name);
+                $people[$name]->setCompany($input[2], $input[3], floatval($input[4]));
+            }
             break;
 
-        case 'car': if(array_key_exists($name, $people)){
+        case 'car':
+            if (array_key_exists($name, $people)) {
 
-            $people[$name]->setCar($input[2], intval($input[3]));
-        } else {
+                $people[$name]->setCar($input[2], intval($input[3]));
+            } else {
 
-            $people[$name] = new Person();
-            $people[$name]->setCar($input[2], intval($input[3]));
-        }
+                $people[$name] = new Person($name);
+                $people[$name]->setCar($input[2], intval($input[3]));
+            }
             break;
 
-        case 'pokemon': if(array_key_exists($name, $people)){
+        case 'pokemon':
+            if (array_key_exists($name, $people)) {
 
-            $people[$name]->addPokemon($input[2], $input[3]);
-        } else {
+                $people[$name]->addPokemon($input[2], $input[3]);
+            } else {
 
-            $people[$name] = new Person();
-            $people[$name]->addPokemon($input[2], $input[3]);
-        }
+                $people[$name] = new Person($name);
+                $people[$name]->addPokemon($input[2], $input[3]);
+            }
             break;
 
-        case 'parents': if(array_key_exists($name, $people)){
+        case 'parents':
+            if (array_key_exists($name, $people)) {
 
-            $people[$name]->addPokemon($input[2], $input[3]);
-        } else {
+                $people[$name]->addParent($input[2], $input[3]);
+            } else {
 
-            $people[$name] = new Person();
-            $people[$name]->addPokemon($input[2], $input[3]);
-        }
+                $people[$name] = new Person($name);
+                $people[$name]->addParent($input[2], $input[3]);
+            }
             break;
-        case 'children': if(array_key_exists($name, $people)){
+        case 'children':
+            if (array_key_exists($name, $people)) {
 
-            $people[$name]->addChild($input[2], $input[3]);
-        } else {
+                $people[$name]->addChild($input[2], $input[3]);
+            } else {
 
-            $people[$name] = new Person();
-            $people[$name]->addChild($input[2], $input[3]);
-        }
+                $people[$name] = new Person($name);
+                $people[$name]->addChild($input[2], $input[3]);
+            }
             break;
     }
 
@@ -199,6 +261,7 @@ while (true) {
 }
 
 
-$targetPerson = trim(fgets(STDIN));
-print_r($people);
+
+$targetPerson = $people[trim(fgets(STDIN))];
+echo $targetPerson;
 
