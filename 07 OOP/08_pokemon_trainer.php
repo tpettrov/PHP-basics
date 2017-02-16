@@ -35,19 +35,22 @@ class Trainer
         $this->pokemons[] = $pokemon;
     }
 
-    public function getPokemons(){
+    public function getPokemons()
+    {
 
         return $this->pokemons;
 
     }
 
-    public function badgesCount(){
+    public function badgesCount()
+    {
 
         return $this->badges;
 
     }
 
-    public function pokemonsCount(){
+    public function pokemonsCount()
+    {
 
         return count($this->pokemons);
 
@@ -86,27 +89,22 @@ class Pokemon
 
     }
 
-    public function damage(){
+    public function damage()
+    {
 
         $this->health -= 10;
 
-}
+    }
 
 }
 
-//$pokemon2 = new Pokemon('Poketo2', 'Waater', 100);
-//$pokemon = new Pokemon('Poke', 'sun', 53);
-//$petkan = new Trainer('Vanko', $pokemon);
-//$petkan->addPokemon($pokemon2);
-//$petkan->setBadges(155);
-//var_dump($petkan);
 
 $trainers = [];
 
 while (true) {
 
     $input = explode(' ', trim(fgets(STDIN)));
-    if ($input[0] == 'Tournament' ) {
+    if ($input[0] == 'Tournament') {
 
         break;
     }
@@ -129,8 +127,8 @@ while (true) {
 
 while (true) {
 
-    $input =trim(fgets(STDIN));
-    if ($input == 'End' ) {
+    $input = trim(fgets(STDIN));
+    if ($input == 'End') {
 
         break;
     }
@@ -139,54 +137,48 @@ while (true) {
 
     foreach ($trainers as $trainer) {
 
-            if (searchForElement($trainer->getPokemons(), $elementNeeded, $trainer)){
+        if (searchForElement($trainer->getPokemons(), $elementNeeded, $trainer)) {
 
 
-            } else {
+        } else {
 
-               $trainer->hurtPokemons();
-            }
+            $trainer->hurtPokemons();
+        }
 
     }
 
 
 }
 
-function searchForElement($arrayOfPokemons, $elementNeeded, $trainer){
-$found = false;
+function searchForElement($arrayOfPokemons, $elementNeeded, $trainer)
+{
+    $found = false;
     foreach ($arrayOfPokemons as $pokemon) {
 
-        if ($pokemon->element == $elementNeeded ) {
+        if ($pokemon->element == $elementNeeded) {
 
             $trainer->addBadge();
             $found = true;
         }
 
     }
-    if($found){
+    if ($found) {
         return true;
     } else return false;
 
 }
 
-//function hurtPokemons (array $pokemonsOfTrainer, $trainer){
-//
-//    foreach ($pokemonsOfTrainer as $pokemon) {
-//
-//        $pokemon->damage();
-//            if( $pokemon->health <= 0) {
-//
-//                $key = array_search($pokemon, $pokemonsOfTrainer );
-//                array_splice($trainer->getPokemons(), $key, 1);
-//                var_dump($key);
-//            }
-//
-//    }
-//}
 
-usort($trainers, function($a, $b) {
 
-    return $a->badgesCount() < $b->badgesCount();
+usort($trainers, function ($a, $b) {
+
+    if ($a->badgesCount() == $b->badgesCount()) {
+        return 0;
+    } else {
+        return ($a->badgesCount() < $b->badgesCount());
+    }
+
+
 });
 
 foreach ($trainers as $trainer) {
