@@ -78,8 +78,9 @@ class Person
         }
 
         $company = $this->company ? $this->company . PHP_EOL : null;
+        $car = $this->car ? $this->car . PHP_EOL : null;
 
-        return $this->name . PHP_EOL . 'Company:' . PHP_EOL . $company . 'Car:' . PHP_EOL . $this->car . PHP_EOL
+        return $this->name . PHP_EOL . 'Company:' . PHP_EOL . $company . 'Car:' . PHP_EOL . $car
             . 'Pokemon:' . PHP_EOL . $stringPokemon . 'Parents:' . PHP_EOL . $stringParents . 'Children:' . PHP_EOL . $stringChildren;
     }
 
