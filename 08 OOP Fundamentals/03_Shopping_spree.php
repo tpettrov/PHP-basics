@@ -37,7 +37,7 @@ class Person
     public function buy(Product $product)
     {
 
-        $this->bag[$product->getName()] = $product;
+        array_push($this->bag, $product);
         $this->money -= $product->getCost();
 
     }
@@ -53,6 +53,27 @@ class Person
         } else {
             return false;
         }
+    }
+
+    public function __toString()
+    {
+        $productsPrint = [];
+        $products = '';
+        foreach ($this->bag as $product) {
+
+            array_push($productsPrint, $product->getName());
+        }
+
+        if (empty($productsPrint)) {
+
+            $products = 'Nothing bought';
+        } else {
+
+            $products = implode(',', $productsPrint);
+        }
+
+        return $this->name . ' - ' . $products . PHP_EOL;
+
     }
 
 
@@ -72,41 +93,35 @@ class Product
 
     }
 
-    private function setName($name)
+    private function setName(string $name)
     {
 
         Helper::validateName($name);
         $this->name = $name;
     }
 
-    private function setCost($cost)
+    private function setCost(float $cost)
     {
 
         Helper::validateMoney($cost);
         $this->cost = $cost;
     }
 
-    public function getCost(){
+    public function getCost()
+    {
 
         return $this->cost;
     }
 
-    public function getName(){
+    public function getName()
+    {
 
-        return $this->cost;
+        return $this->name;
     }
 
 
 }
 
-try {
-
-    $person = new Product('d', 23);
-
-} catch (Exception $e) {
-
-    echo $e->getMessage();
-}
 
 class Helper
 {
@@ -138,41 +153,19 @@ $products = [];
 $peopleLine = explode(';', trim(fgets(STDIN)));
 $productLine = explode(';', trim(fgets(STDIN)));
 
-try {$people = inputBuilder($peopleLine, 'Person');
+
+$flag = true;
+
+try {
+    $people = inputBuilder($peopleLine, 'Person');
     $products = inputBuilder($productLine, 'Product');
 } catch (Exception $e) {
 
     echo $e->getMessage();
-    $flag = true;
+    $flag = false;
 }
 
-
-
-$input = trim(fgets(STDIN));
-
-while ($input != 'END' && !$flag) {
-
-
-    $commands = explode(' ', $input);
-
-    $personBuying = $commands[0];
-    $productWanted = $commands[1];
-
-    if ($people[$personBuying]->checkBalance($products[$productWanted]->getCost())){
-
-        $people[$personBuying]->buy($products[$productWanted]);
-        echo "$personBuying bought $productWanted" . PHP_EOL;
-    } else {
-
-        echo "$personBuying can't afford $productWanted" . PHP_EOL;
-    }
-
-
-    $input = trim(fgets(STDIN));
-}
-
-
-function inputBuilder($inputArray, string $type)
+function inputBuilder(array $inputArray, string $type)
 {
 
     $outputArray = [];
@@ -188,4 +181,39 @@ function inputBuilder($inputArray, string $type)
 
 }
 
-//print_r($people);
+
+if ($flag) {
+
+    $input = trim(fgets(STDIN));
+
+    while ($input != 'END') {
+
+
+        $commands = explode(' ', $input);
+
+        $personBuying = $commands[0];
+        $productWanted = $commands[1];
+
+
+        if ($people[$personBuying]->checkBalance($products[$productWanted]->getCost())) {
+
+            $people[$personBuying]->buy($products[$productWanted]);
+            echo "$personBuying bought $productWanted" . PHP_EOL;
+        } else {
+
+            echo "$personBuying can't afford $productWanted" . PHP_EOL;
+        }
+
+
+        $input = trim(fgets(STDIN));
+    }
+
+    foreach ($people as $person) {
+
+        echo $person;
+
+    }
+
+
+}
+
