@@ -15,33 +15,23 @@ class Person
 
     public function __construct(string $name, float $money)
     {
-        $this->name = self::setName($name);
-        $this->money = self::setMoney($money);
+        $this->setName($name);
+        $this->setMoney($money);
 
     }
 
     private function setName(string $name)
     {
-
-        if (empty($name)) {
-
-            throw new Exception('Name cannot be empty');
-        } else {
-            return $name;
-        }
+        Helper::validateName($name);
+        $this->name = $name;
 
     }
 
     private function setMoney(float $money)
     {
 
-        if ($money < 0) {
-
-            throw new Exception('Money cannot be negative');
-        } else {
-            return $money;
-        }
-
+       Helper::validateMoney($money);
+       $this->money = $money;
     }
 
 
@@ -54,14 +44,57 @@ class Product
     private $cost;
 
 
+    public function __construct(string $name, float $cost)
+    {
+        $this->setName($name);
+        $this->cost = $cost;
+
+    }
+
+    private function setName($name){
+
+        Helper::validateName($name);
+        $this->name = $name;
+    }
+
+    private function setCost($cost){
+
+        Helper::validateMoney($cost);
+        $this->cost = $cost;
+    }
+
+
+
+
 }
 
 try {
 
-    $person = new Person('d', -23);
+    $person = new Product('d', 23);
 
 } catch (Exception $e) {
 
     echo $e->getMessage();
 }
 
+class Helper
+{
+
+    public static function validateName(string $name)
+    {
+
+        if (empty($name)) {
+
+            throw new Exception('Name cannot be empty');
+        }
+    }
+
+    public static function validateMoney(float $money)
+    {
+
+        if ($money < 0) {
+
+            throw new Exception('Money cannot be negative');
+        }
+    }
+}
