@@ -173,7 +173,7 @@ function inputBuilder(array $inputArray, string $type)
     foreach (array_filter($inputArray) as $element) {
 
         $data = explode('=', $element);
-        $outputArray[$data[0]] = new $type($data[0], $data[1]);
+        $outputArray[$data[0]] = new $type($data[0], floatval($data[1]));
 
     }
 
