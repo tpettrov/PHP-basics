@@ -15,9 +15,9 @@ class Box
 
     public function __construct(float $length, float $width, float $height)
     {
-        self::paramValidator($length, 'length');
-        self::paramValidator($width, 'width');
-        self::paramValidator($height, 'height');
+        $this->paramValidator($length, 'length');
+        $this->paramValidator($width, 'width');
+        $this->paramValidator($height, 'height');
 
     }
 
