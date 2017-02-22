@@ -44,7 +44,8 @@ class Food
 
     }
 
-    public function getPoints(){
+    public function getPoints()
+    {
 
         return $this->points;
     }
@@ -79,11 +80,11 @@ class Mood
 
     }
 
-    public function getMood(){
+    public function getMood()
+    {
 
         return $this->mood;
     }
-
 
 
 }
@@ -112,7 +113,7 @@ class MoodFactory
 class Mordor
 {
 
-    private $points;
+    private $points = 0;
     private $mood;
 
     public function __construct(array $foodArray)
