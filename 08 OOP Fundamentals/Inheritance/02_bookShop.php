@@ -8,9 +8,9 @@
 
 class Book {
 
-    protected $title;
-    protected $author;
-    protected $price;
+    private $title;
+    private $author;
+    private $price;
 
 
     public function __construct(string $title, string $author, float $price)
