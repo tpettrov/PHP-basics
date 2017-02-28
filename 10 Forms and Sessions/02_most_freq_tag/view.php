@@ -11,9 +11,18 @@
 
     <label for="text">Enter tags:</label>
     <input type="text" name="text" >
-    <input type="submit" value="Submit">
-    <input type="submit" value="Clear">
+    <input type="submit" name="submit" value="Submit">
+    <input type="submit" name="clear" value="Clear">
 
 </form>
 
+<?php if (isset($_SESSION))  : ?>
 
+    <?php foreach ($_SESSION as $key=> $value) : ?>
+
+    <div><?= $key ?> : <?= $value ?></div>
+
+    <?php endforeach; ?>
+
+    <div>Most frequent tag is: <?= array_search($mostFreqTag, $_SESSION)?></div>
+<?php endif; ?>

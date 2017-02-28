@@ -8,14 +8,15 @@
 
 
 session_start();
+$mostFreqTag = 0;
+if (isset($_POST['submit']) && isset($_POST['text'])) {
 
-if (isset($_POST['text'])) {
 
-    $arrTags = explode(', ', $_POST['text'] );
+    $arrTags = explode(', ', $_POST['text']);
 
     foreach ($arrTags as $tag) {
 
-        if(isset($_SESSION[$tag])) {
+        if (isset($_SESSION[$tag])) {
 
             $_SESSION[$tag]++;
         } else {
@@ -25,13 +26,16 @@ if (isset($_POST['text'])) {
 
     }
 
-    var_dump($arrTags);
-    var_dump($_SESSION);
+    arsort($_SESSION);
 
+    $mostFreqTag = max($_SESSION);
+
+
+} else if (isset($_POST['clear'])) {
+
+    session_destroy();
 }
 
 
-
-
-require ('view.php');
+require('view.php');
 
