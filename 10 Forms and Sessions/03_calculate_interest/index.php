@@ -14,10 +14,11 @@ if(isset($_GET['submit'])) {
     $compound = $_GET['compound'];
     $period = $_GET['period'];
 
-    $finalSum = $amount;
-    for ($i=$period; $i<$period; $i++) {
+    $finalSum[0] = $amount;
 
-        $finalSum += $amount * 1.01;
+    for ($i=1; $i<=$period; $i++) {
+
+        $finalSum[$i] = $finalSum[$i-1] * 1.01;
 
     }
 

@@ -27,6 +27,6 @@
 
 <?php if (isset($finalSum)) : ?>
 
-<div><?= $finalSum; ?></div>
+<div><?= number_format($finalSum[$period], 2); ?> <?= $currency?></div>
 
 <?php endif; ?>
