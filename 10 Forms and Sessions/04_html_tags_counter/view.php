@@ -12,3 +12,18 @@
     <input type="submit" name="submit"  >
 
 </form>
+
+<?php if(isset($_GET['submit'])) : ?>
+
+    <div><?= $_SESSION['count'] ?></div>
+
+   <?php if ($flag) : ?>
+
+       <div>Valid HTML tag !</div>
+   <?php else :?>
+
+       <div>Invalid HTML tag !</div>
+
+
+<?php endif; ?>
+<?php endif; ?>
