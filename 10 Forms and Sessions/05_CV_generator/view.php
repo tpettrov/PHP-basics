@@ -1,4 +1,3 @@
-
 <!--/**-->
 <!-- * Created by PhpStorm.-->
 <!-- * User: Toni-->
@@ -9,11 +8,11 @@
 
 <form>
 
-<fieldset>
-        <input type="text" name="firstName" value="First Name"> <br>
-        <input type="text" name="lastName" value="Last Name"> <br>
-        <input type="text" name="email" value="Email"> <br>
-        <input type="text" name="phoneNum" value="Phone Number"> <br>
+    <fieldset>
+        <input type="text" name="firstName"> <br>
+        <input type="text" name="lastName"> <br>
+        <input type="text" name="email"> <br>
+        <input type="text" name="phoneNum"> <br>
 
         <input type="checkbox" name="gender"> Female
         <input type="checkbox" name="gender"> Male
@@ -22,7 +21,7 @@
         <label for="birthDate"> Birth Date</label>
         <input type="text" name="birthDate">
 
-</fieldset>
+    </fieldset>
 
 
     <fieldset>
@@ -34,29 +33,46 @@
     </fieldset>
 
     <fieldset>
-        Programming languages <input type="text" name="progLang"> <br>
-        <select name="level">
-            <option value="beginner">Beginner</option>
-            <option value="Senior">Senior</option>
-            <option value="Advanced">Advanced</option>
-        </select>
+        Programming languages <br>
+        <div>
+            <input type="text" name="progLang[]">
+            <select name="level[]">
+                <option value="beginner">Beginner</option>
 
-        <input type="button" onclick="addNew()" value="Add Language">
+            </select>
+        </div>
+
+        <div>
+            <input type="text" name="progLang[]"> <br>
+            <select name="level[]">
+                <option value="advanced">Advanced</option>
+
+            </select>
+        </div>
 
 
     </fieldset>
 
+    </fieldset>
 
+    <fieldset>
+
+        Languages <br>
+
+        <input type="text" name="languages[]">
+        <select name="reading">
+
+            <option value="intermediate">Intermediate</option>
+        </select>
+        <select name="writing">
+
+            <option value="beginner">Beginner</option>
+        </select>
+
+
+
+    </fieldset>
+
+    <input type="submit" name="submit" value="Generate CV">
 
 </form>
-
-
-<script>
-    function addNew(){
-
-        console.log('aha');
-
-
-    }
-
-</script>

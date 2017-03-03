@@ -7,5 +7,26 @@
  */
 
 
+if (isset($_GET['submit'])) {
+
+
+
+
+
+}
 
 include ('view.php');
+
+
+function validation(string $testString){
+
+    $length = strlen($testString);
+
+    if($length > 2 && $length < 20) {
+
+
+
+    }
+
+
+}
