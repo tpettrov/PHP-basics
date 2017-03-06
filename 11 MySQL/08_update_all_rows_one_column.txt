@@ -1,0 +1,2 @@
+update people
+set age=25
