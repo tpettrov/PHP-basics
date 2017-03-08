@@ -8,7 +8,6 @@
 
 $db = new PDO('mysql:host=localhost;dbname=minions', 'root', '', ['utf8_general_ci']);
 
-
 $stmt = $db->prepare("CREATE TABLE `minions` (
 	`id` INT NOT NULL,
 	`name` VARCHAR(50) NULL,
