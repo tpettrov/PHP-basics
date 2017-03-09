@@ -9,7 +9,7 @@
 
 $db = new PDO('mysql:host=localhost;dbname=softuni', 'root', '');
 
-//$stmt = $db->prepare("ALTER TABLE towns AUTO_INCREMENT=1;
+//$stmt = $db->prepare("ALTER TABLE towns AUTO_INCREMENT=1; // auto increment starts at 1
 //INSERT INTO `towns`
 //(`name`)
 //VALUES
@@ -21,6 +21,8 @@ $db = new PDO('mysql:host=localhost;dbname=softuni', 'root', '');
 //VALUES
 // ('Sales'), ('Marketing'), ('Software Development'), ('Quality Assurance')");
 
+// fill data
+
 //$stmt = $db->prepare("ALTER TABLE employees AUTO_INCREMENT=1;
 //INSERT INTO `employees`
 //(first_name, middle_name, last_name, job_title, department_id, hire_date, salary)
@@ -31,9 +33,11 @@ $db = new PDO('mysql:host=localhost;dbname=softuni', 'root', '');
 // ('Georgi ', 'Terziev', 'Ivanov', 'CEO', '2', '2007-12-09', '3000.00'),
 // ('Peter ', 'Pan', 'Pan', 'Intern', '3', '2007-12-09', '599.88')");
 
-$stmt = $db->prepare('SELECT * FROM `employees` ORDER by `salary` DESC;');
+//$stmt = $db->prepare('SELECT first_name, salary FROM `employees` ORDER by `salary` DESC;'); // select specific columns and ORDER
 
+//$stmt = $db->prepare("UPDATE `employees` SET salary = salary / '1.1'"); // raise salaries by 10%
 
+//$stmt = $db->prepare("DELETE FROM `addresses`"); empty table
 
 if (!$stmt->execute()) {
     print_r($stmt->errorInfo());
