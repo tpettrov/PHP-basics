@@ -31,7 +31,7 @@ $db = new PDO('mysql:host=localhost;dbname=softuni', 'root', '');
 // ('Georgi ', 'Terziev', 'Ivanov', 'CEO', '2', '2007-12-09', '3000.00'),
 // ('Peter ', 'Pan', 'Pan', 'Intern', '3', '2007-12-09', '599.88')");
 
-$stmt = $db->prepare('SELECT * from `employees`');
+$stmt = $db->prepare('SELECT * FROM `employees` ORDER by `salary` DESC;');
 
 
 
