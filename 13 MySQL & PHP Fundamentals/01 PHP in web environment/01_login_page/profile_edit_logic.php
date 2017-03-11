@@ -7,28 +7,20 @@
  */
 session_start();
 
-include('database.php');
+require_once ('UserLifecycle.php');
+$userLifeCycle = new UserLifecycle();
 
 
 if(isset($_POST['change'])) {
 
-    $newUser = trim($_POST['username']);
 
-    if($newUser == $_SESSION['user']) {
+$result = $userLifeCycle->edit(trim($_SESSION['user']), $_POST, $_SESSION);
 
-        var_dump($users[$_SESSION['user']]['password'] = trim($_POST['password']));
-        $users[$_SESSION['user']]['email'] = trim($_POST['email']);
-        $users[$_SESSION['user']]['birthday'] = trim($_POST['birthday']);
-    } else {
+if($result) {
 
-        echo 'ups';
-    }
-
-    $usersAsText = var_export($users, true);
-    $declaration = '<?php ' . PHP_EOL .'$users = ' . $usersAsText . ';';
-    $result = file_put_contents('database.php', $declaration);
     header('Location: profile.php');
-
+    exit;
+}
 
 }
 

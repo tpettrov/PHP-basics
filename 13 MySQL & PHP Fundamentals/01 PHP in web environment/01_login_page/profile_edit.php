@@ -6,16 +6,17 @@
  * Time: 21:38
  */
 session_start();
-include_once('database.php');
+require_once ('UserLifecycle.php');
+$userLifeCycle = new UserLifecycle();
 
 ?>
 
 <form method="post" action="profile_edit_logic.php">
 
     Username: <input type="text" name="username" value="<?= $_SESSION['user']?> ">
-    Password: <input type="password" name="password" value="<?= $users[$_SESSION['user']]['password'] ?> ">
-    Email: <input type="text" name="email" value="<?= $users[$_SESSION['user']]['email'] ?> ">
-    Birthday: <input type="text" name="birthday" value="<?= $users[$_SESSION['user']]['birthday'] ?> ">
+    Password: <input type="password" name="password" value="<?= $userLifeCycle->getPassword(trim($_SESSION['user'])) ?> ">
+    Email: <input type="text" name="email" value="<?= $userLifeCycle->getEmail(trim($_SESSION['user'])) ?> ">
+    Birthday: <input type="text" name="birthday" value="<?= $userLifeCycle->getBirthday(trim($_SESSION['user'])) ?> ">
 
     <input type="submit" name="change">
 

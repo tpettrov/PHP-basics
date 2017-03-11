@@ -3,8 +3,8 @@ $users = array (
   'Anton' => 
   array (
     'password' => '123',
-    'birthday' => '03-04-2017',
-    'email' => 'ahaaa@abv.bg',
+    'email' => 'da@abv.bg',
+    'birthday' => '04-09-2017',
   ),
   'Iglika' => '321',
 );

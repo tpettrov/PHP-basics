@@ -7,13 +7,17 @@
  */
 
 session_start();
-require_once ('database.php');
+require_once ('UserLifecycle.php');
+$userLifeCycle = new UserLifecycle();
 
 if(isset($_SESSION['user'])) {
 
     $user = $_SESSION['user'];
 
-    $daysToBirthday = date_diff(new DateTime('now'), DateTime::createFromFormat('d-m-Y', $users[$user]['birthday']));
+    $birthday = $userLifeCycle->getBirthday(trim($_SESSION['user']));
+
+
+    $daysToBirthday = date_diff(new DateTime('now'), DateTime::createFromFormat('d-m-Y', $birthday));
     $screenText  = 'Welcome, ' . $user . '<br>' . 'Days until your birthday: ' . $daysToBirthday->format('%a');
 
     echo $screenText;
