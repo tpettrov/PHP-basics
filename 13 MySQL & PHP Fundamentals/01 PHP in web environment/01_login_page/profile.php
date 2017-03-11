@@ -18,8 +18,10 @@ if(isset($_SESSION['user'])) {
 
     echo $screenText;
 
-
 } else {
 
     echo'Nope';
-}
+} ?>
+
+<a href="profile_edit.php">Edit profile here</a>
+
