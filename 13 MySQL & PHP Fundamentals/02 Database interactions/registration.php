@@ -6,11 +6,10 @@
  * Time: 14:50
  */
 
-require_once ('userLifecycle.php');
+include_once ('app.php');
 
 if (isset($_POST['register'])) {
 
-    $userLifeCycle = new UserLifecycle();
 
     $result = $userLifeCycle->register($_POST['username'], $_POST['fullname'], $_POST['password'], $_POST['birthdate'], $_POST['email']);
 

@@ -12,11 +12,11 @@ class UserLifecycle
      * @var \PDO
      */
 
-    private $db;
+    private $db = null;
 
-    public  function __construct()
+    public  function __construct(\PDO $db)
     {
-        require_once ('database.php');
+
         $this->db = $db;
 
     }
