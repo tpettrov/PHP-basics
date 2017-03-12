@@ -6,8 +6,7 @@
  * Time: 21:38
  */
 session_start();
-require_once ('UserLifecycle.php');
-$userLifeCycle = new UserLifecycle();
+include_once ('app.php');
 
 ?>
 

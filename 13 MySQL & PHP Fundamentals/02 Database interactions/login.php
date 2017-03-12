@@ -10,8 +10,7 @@ session_start();
 
 if (isset($_POST['login'])) {
 
-    include_once ('userLifeCycle.php');
-    $userLifeCycle = new UserLifecycle();
+    include_once ('app.php');
 
     $username = $_POST['username'];
     $password = $_POST['password'];
