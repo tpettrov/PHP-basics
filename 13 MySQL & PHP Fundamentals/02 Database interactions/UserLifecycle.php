@@ -68,6 +68,42 @@ class UserLifecycle
 
     }
 
+    public function login(string $username, string $password) : bool
+    {
+
+        $loginStmt = $this->db->prepare("
+            
+            SELECT 
+                    username,
+                    password
+                    
+             FROM users
+             WHERE
+             username = ?
+        
+        ");
+
+        $loginStmt->execute([$username]);
+
+        if ($loginStmt->rowCount() <= 0 ) {
+
+            return false;
+
+        }
+
+        $result = $loginStmt->fetch(PDO::FETCH_ASSOC);
+        $hashedPass = $result['password'];
+        if (password_verify($password, $hashedPass)) {
+
+            return true;
+        } else {
+
+            return false;
+        }
+
+
+    }
+
     public function getEmail(string $username){
 
         $statement = $this->db->prepare("SELECT email FROM users where username = ?");

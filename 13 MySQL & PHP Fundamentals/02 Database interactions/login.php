@@ -7,25 +7,24 @@
  */
 session_start();
 
-include('database.php');
 
 if (isset($_POST['login'])) {
 
+    include_once ('userLifeCycle.php');
+    $userLifeCycle = new UserLifecycle();
 
     $username = $_POST['username'];
+    $password = $_POST['password'];
 
-
-    if(array_key_exists($username, $users)) {
+    if ($userLifeCycle->login($username, $password)) {
 
         $_SESSION['user'] = $username;
         header('Location: profile.php');
+        exit;
 
     }
 
 
-} else {
-
-    session_abort();
 }
 
 
