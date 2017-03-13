@@ -7,7 +7,9 @@
  */
 
 session_start();
-require_once ('app.php');
+require_once('app.php');
+
+/** @var \DTO\Profile $data */
 
 
 if(isset($_SESSION['user'])) {
@@ -24,7 +26,9 @@ if(isset($_SESSION['user'])) {
 } else {
 
     echo'Nope';
-} ?>
+}
 
-<a href="profile_edit.php">Edit profile here</a>
+?>
+
+<a href="profile_edit_logic.php">Edit profile here</a>
 

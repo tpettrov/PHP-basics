@@ -18,8 +18,23 @@ $result = $userLifeCycle->edit(trim($_SESSION['user']), $_POST, $_SESSION);
 if($result) {
 
     header('Location: profile.php');
-    exit;
+
 }
+
+
+} else {
+
+
+    $username = $_SESSION['user'];
+
+    $password = $userLifeCycle->getPassword($username);
+    $email = $userLifeCycle->getEmail($username);
+    $birthday = $userLifeCycle->getBirthday($username);
+
+    $dto = new \DTO\Profile($username, $password, $email, $birthday);
+
+    \ViewEngine\Template::render('profile_edit', $dto);
+
 
 }
 
