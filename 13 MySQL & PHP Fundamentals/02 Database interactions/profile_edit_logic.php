@@ -18,6 +18,7 @@ $result = $userLifeCycle->edit(trim($_SESSION['user']), $_POST, $_SESSION);
 if($result) {
 
     header('Location: profile.php');
+    exit;
 
 }
 
