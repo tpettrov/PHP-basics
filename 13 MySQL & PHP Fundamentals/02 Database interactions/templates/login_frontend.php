@@ -6,7 +6,7 @@
  * Time: 17:21
  */-->
 
-<form method="post" action="login.php">
+<form method="post">
 
 
     Username: <input type="text" name="username"> <br>

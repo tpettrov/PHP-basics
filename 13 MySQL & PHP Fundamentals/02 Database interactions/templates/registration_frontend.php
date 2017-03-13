@@ -7,7 +7,7 @@
  */
 
 ?>
-<form method="post" action="registration.php">
+<form method="post">
 
     Username:  <input type="text" name="username"> <br>
     Full Name: <input type="text" name="fullname"><br>

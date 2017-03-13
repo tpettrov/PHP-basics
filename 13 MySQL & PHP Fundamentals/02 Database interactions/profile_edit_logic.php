@@ -32,7 +32,7 @@ if($result) {
     $email = $userLifeCycle->getEmail($username);
     $birthday = $userLifeCycle->getBirthday($username);
 
-    $dto = new \DTO\Profile($username, $password, $email, $birthday);
+    $dto = new \DTO\Profile($username, $password, $email, $birthday); // raise a profileData object
 
     \ViewEngine\Template::render('profile_edit', $dto);
 

@@ -15,7 +15,11 @@ if (isset($_POST['register'])) {
 
     if($result) {
 
-        header('Location: login_frontend.php');
+        header('Location: login.php');
     }
+
+} else {
+
+    ViewEngine\Template::render('registration_frontend');
 
 }

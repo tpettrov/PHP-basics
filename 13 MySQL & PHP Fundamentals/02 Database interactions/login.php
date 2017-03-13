@@ -6,11 +6,11 @@
  * Time: 17:21
  */
 session_start();
-
+include_once ('app.php');
 
 if (isset($_POST['login'])) {
 
-    include_once ('app.php');
+
 
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -23,6 +23,11 @@ if (isset($_POST['login'])) {
 
     }
 
+
+} else {
+
+
+    \ViewEngine\Template::render('login_frontend');
 
 }
 
