@@ -7,8 +7,8 @@
  */
 
 session_start();
-require_once ('UserLifecycle.php');
-$userLifeCycle = new UserLifecycle();
+require_once ('app.php');
+
 
 if(isset($_SESSION['user'])) {
 
