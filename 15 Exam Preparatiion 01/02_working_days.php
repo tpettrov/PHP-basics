@@ -8,6 +8,7 @@
 
 $dateStart = date_create($_GET['dateOne']);
 $dateEnd = date_create($_GET['dateTwo']);
+$dateEnd = $dateEnd->modify( '+1 day' );
 
 $holidays = array_map(function ($date) {
 
