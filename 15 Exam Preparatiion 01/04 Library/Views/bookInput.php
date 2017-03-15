@@ -1,4 +1,4 @@
-<form method="post" action="../04 Library/bookControl.php">
+<form method="post" action="bookControl.php">
     Book Id *
     <input type="text" name="bookId"> <br>
     Book Title *

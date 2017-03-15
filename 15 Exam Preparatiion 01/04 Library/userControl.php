@@ -6,9 +6,8 @@
  * Time: 22:47
  */
 
-namespace UserControl;
 
-/** @var $userModel \UserModel\UserModel */
+/** @var $userModel \Models\UserModel */
 
 require_once('app.php');
 
@@ -23,7 +22,7 @@ if (isset($_POST['Login'])) {
 
         $_SESSION['user'] = $username;
 
-       \ViewEngine\Template::render('bookInput');
+       $app->render('bookInput');
 
 
     } else {
@@ -38,6 +37,6 @@ if (isset($_POST['Login'])) {
 else {
 
 
-    \ViewEngine\Template::render('login');
+    $app->render('login');
 
 }

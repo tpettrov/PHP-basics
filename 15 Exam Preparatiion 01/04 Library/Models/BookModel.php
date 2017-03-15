@@ -6,7 +6,7 @@
  * Time: 11:45 AM
  */
 
-namespace BookModel;
+namespace Models;
 
 
 class BookModel
@@ -44,7 +44,7 @@ class BookModel
 
         $addStmt->execute([$bookId, $bookTitle, $bookAuthor, $bookLanguage, $genre, $year, $comments, $file]);
 
-        //var_dump($addStmt->errorInfo());
+        var_dump($addStmt->errorInfo());
 
 
     }

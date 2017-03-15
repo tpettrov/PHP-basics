@@ -22,16 +22,18 @@ spl_autoload_register(
     \Config\DbConfig::DB_NAME
 );
 
-$userModel = new \UserModel\UserModel(\Driver\Database::getInstance(
+$userModel = new Models\UserModel (\Driver\Database::getInstance(
     \Config\DbConfig::DB_HOST,
     \Config\DbConfig::DB_USER,
     \Config\DbConfig::DB_PASS,
     \Config\DbConfig::DB_NAME
 ));
 
-$bookModel = new \BookModel\BookModel(\Driver\Database::getInstance(
+$bookModel = new Models\BookModel(\Driver\Database::getInstance(
     \Config\DbConfig::DB_HOST,
     \Config\DbConfig::DB_USER,
     \Config\DbConfig::DB_PASS,
     \Config\DbConfig::DB_NAME
 ));
+
+$app = new Core\Application();

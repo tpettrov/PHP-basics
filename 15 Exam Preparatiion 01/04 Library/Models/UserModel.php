@@ -6,7 +6,7 @@
  * Time: 23:14
  */
 
-namespace UserModel;
+namespace Models;
 
 
 class UserModel

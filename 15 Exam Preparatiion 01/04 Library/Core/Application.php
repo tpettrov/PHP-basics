@@ -14,10 +14,10 @@ class Application
 
     const TEMPLATES_FOLDER = 'Views';
 
-    public static function render($templateName, $data = null)
+    public static function render($viewName, $data = null)
     {
 
-        include self::TEMPLATES_FOLDER . '/' . $templateName . '.php';
+        include self::TEMPLATES_FOLDER . '/' . $viewName . '.php';
 
     }
 

@@ -25,7 +25,7 @@ if(isset($_POST['addBook'])){
 
     } else {
 
-        ViewEngine\Template::render('bookInput');
+        $app->render('bookInput');
 
     }
 
@@ -37,7 +37,7 @@ if(isset($_POST['addBook'])){
         $data = $bookModel->getAllBooks();
 
 
-    ViewEngine\Template::render('allBooks', $data);
+    $app->render('allBooks', $data);
 
 
 }

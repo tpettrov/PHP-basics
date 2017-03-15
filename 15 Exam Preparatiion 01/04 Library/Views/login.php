@@ -4,7 +4,7 @@ Welcome to the login page !
 <hr>
 
 
-<form method="post" action="User.php">
+<form method="post" action="userControl.php">
 
     Username:
     <input type="text" name = "username">

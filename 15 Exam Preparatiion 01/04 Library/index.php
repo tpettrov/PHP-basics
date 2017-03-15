@@ -6,12 +6,11 @@
  * Time: 22:27
  */
 
-
-/** @var $userModel \UserModel\UserModel */
+/** @var $app \Core\Application */
 
 require_once ('app.php');
 
-
+if (isset($_SESSION['user'])) {
 
     if ($userModel->isKnown($_SESSION['user'])) {
 
@@ -19,16 +18,16 @@ require_once ('app.php');
 
         echo 'Welcome, ' . $_SESSION['user'] . '<br>';
 
-        \ViewEngine\Template::render('bookInput');
+        $app->render('bookInput');
 
 
-
+    }
 
 } else {
 
 
     // покажи логина
 
-    \ViewEngine\Template::render('login');
+    $app->render('login');
 
 }
