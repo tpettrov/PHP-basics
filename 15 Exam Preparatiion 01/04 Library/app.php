@@ -5,7 +5,6 @@
  * Date: 3/14/2017
  * Time: 22:28
  */
-
 session_start();
 
 spl_autoload_register(

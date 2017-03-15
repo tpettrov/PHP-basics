@@ -2,17 +2,17 @@
 /**
  * Created by PhpStorm.
  * User: Toni
- * Date: 3/14/2017
- * Time: 22:38
+ * Date: 3/16/2017
+ * Time: 00:11
  */
 
-namespace ViewEngine;
+namespace Core;
 
 
-class Template
+class Application
 {
 
-    const TEMPLATES_FOLDER = 'Templates';
+    const TEMPLATES_FOLDER = 'Views';
 
     public static function render($templateName, $data = null)
     {
