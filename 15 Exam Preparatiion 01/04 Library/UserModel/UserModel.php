@@ -18,14 +18,14 @@ class UserModel
 
     private $db = null;
 
-    public  function __construct(\PDO $db)
+    public function __construct(\PDO $db)
     {
 
         $this->db = $db;
 
     }
 
-    public function login($username, $password) : bool
+    public function login($username, $password): bool
     {
 
         $loginStmt = $this->db->prepare("
@@ -42,7 +42,7 @@ class UserModel
 
         $loginStmt->execute([$username]);
 
-        if ($loginStmt->rowCount() <= 0 ) {
+        if ($loginStmt->rowCount() <= 0) {
 
             return false;
 
@@ -59,6 +59,30 @@ class UserModel
         }
 
 
+    }
+
+    public function isKnown($username): bool
+
+    {
+
+        $loginStmt = $this->db->prepare("
+            
+            SELECT 
+                    username
+                    
+             FROM users
+             WHERE
+             username = ?
+        
+        ");
+
+        $loginStmt->execute([$username]);
+
+        if ($loginStmt->rowCount() <= 0) {
+
+            return false;
+
+        } else return true;
 
     }
 

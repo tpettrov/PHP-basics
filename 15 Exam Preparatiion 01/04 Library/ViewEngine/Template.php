@@ -12,7 +12,7 @@ namespace ViewEngine;
 class Template
 {
 
-    const TEMPLATES_FOLDER = 'templates';
+    const TEMPLATES_FOLDER = 'Templates';
 
     public static function render($templateName, $data = null)
     {

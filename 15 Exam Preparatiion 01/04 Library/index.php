@@ -6,11 +6,22 @@
  * Time: 22:27
  */
 
+
+/** @var $userModel \UserModel\UserModel */
+
 require_once ('app.php');
 
 if (isset($_SESSION['user'])) {
 
-    //покажи формата за въвеждане на книга
+    if ($userModel->isKnown($_SESSION['user'])) {
+
+        // има някой, който го познаваме, покажи му формата за книги
+
+        echo 'Welcome, ' . $_SESSION['user'] . '<br>';
+
+        \ViewEngine\Template::render('bookInput');
+
+    }
 
 
 } else {
@@ -18,6 +29,6 @@ if (isset($_SESSION['user'])) {
 
     // покажи логина
 
-    ViewEngine\Template::render('login');
+    \ViewEngine\Template::render('login');
 
 }

@@ -10,7 +10,7 @@ namespace UserControl;
 
 /** @var $userModel \UserModel\UserModel */
 
-require_once ('../app.php');
+require_once('app.php');
 
 if (isset($_POST['Login'])) {
 
@@ -22,7 +22,9 @@ if (isset($_POST['Login'])) {
     if($result) {
 
         $_SESSION['user'] = $username;
-        \ViewEngine\Template::render('bookInput');
+
+       \ViewEngine\Template::render('bookInput');
+
 
     } else {
 
@@ -31,5 +33,11 @@ if (isset($_POST['Login'])) {
 
     }
 
+
+}
+else {
+
+
+    \ViewEngine\Template::render('login');
 
 }
