@@ -11,7 +11,7 @@
 
 require_once ('app.php');
 
-if (isset($_SESSION['user'])) {
+
 
     if ($userModel->isKnown($_SESSION['user'])) {
 
@@ -21,7 +21,7 @@ if (isset($_SESSION['user'])) {
 
         \ViewEngine\Template::render('bookInput');
 
-    }
+
 
 
 } else {

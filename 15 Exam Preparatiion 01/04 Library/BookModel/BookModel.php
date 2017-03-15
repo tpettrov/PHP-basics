@@ -49,10 +49,20 @@ class BookModel
 
     }
 
-    public function getAllBooks() 
+    public function getAllBooks()
     {
 
+        $getStmt = $this->db->prepare("
+            
+            SELECT * FROM library.books;
+                  
+        
+        ");
 
+        $getStmt->execute();
+        $result = $getStmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $result;
 
     }
 

@@ -34,6 +34,8 @@ if(isset($_POST['addBook'])){
 
 } else if (isset($_POST['showAll'])) {
 
+        $data = $bookModel->getAllBooks();
+
 
     ViewEngine\Template::render('allBooks', $data);
 
