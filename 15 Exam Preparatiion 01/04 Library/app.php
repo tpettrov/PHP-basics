@@ -29,3 +29,10 @@ $userModel = new \UserModel\UserModel(\Driver\Database::getInstance(
     \Config\DbConfig::DB_PASS,
     \Config\DbConfig::DB_NAME
 ));
+
+$bookModel = new \BookModel\BookModel(\Driver\Database::getInstance(
+    \Config\DbConfig::DB_HOST,
+    \Config\DbConfig::DB_USER,
+    \Config\DbConfig::DB_PASS,
+    \Config\DbConfig::DB_NAME
+));

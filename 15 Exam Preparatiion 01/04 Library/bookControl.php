@@ -7,3 +7,35 @@
  */
 
 require_once('app.php');
+
+if(isset($_POST['addBook'])){
+
+    $bookId = trim($_POST['bookId']);
+    $bookTitle = trim($_POST['bookTitle']);
+    $bookAuthor = trim($_POST['bookAuthor']);
+    $bookLanguage = trim($_POST['bookLanguage']);
+    $genre = trim($_POST['genre']);
+    $year = trim($_POST['year']);
+    $comments = trim($_POST['comment']);
+    $file = trim($_POST['file']);
+
+    if ($bookModel->add($bookId, $bookTitle, $bookAuthor, $bookLanguage, $genre, $year, $comments, $file)){
+
+        // покажи всички книги
+
+    } else {
+
+        ViewEngine\Template::render('bookInput');
+
+    }
+
+
+
+
+} else if (isset($_POST['showAll'])) {
+
+
+    ViewEngine\Template::render('allBooks', $data);
+
+
+}

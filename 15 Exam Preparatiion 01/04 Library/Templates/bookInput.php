@@ -1,4 +1,4 @@
-<form method="post" action="">
+<form method="post" action="../04 Library/bookControl.php">
     Book Id *
     <input type="text" name="bookId"> <br>
     Book Title *
@@ -25,7 +25,9 @@
 
     <input type="file" name="file">
 
-    <input type="submit" name="addBook">
+    <input type="submit" name="addBook" value="Add Book">
+
+    <input type="submit" name="showAll" value="Show all books">
 
 
 </form>
