@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Created by PhpStorm.
@@ -18,7 +19,9 @@ if (isset($_SESSION['user'])) {
 
         echo 'Welcome, ' . $_SESSION['user'] . '<br>';
 
-        $app->render('bookInput');
+        $genres = $bookModel->getGenres();
+
+        $app->render('bookInput', $genres);
 
 
     }

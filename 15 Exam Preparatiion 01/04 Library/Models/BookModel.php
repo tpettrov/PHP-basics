@@ -31,7 +31,7 @@ class BookModel
                     title,
                     author,
                     book_language,
-                    genre,         
+                    genre_id,         
                     year_release,
                     comment,
                     image
@@ -44,7 +44,7 @@ class BookModel
 
         $addStmt->execute([$bookId, $bookTitle, $bookAuthor, $bookLanguage, $genre, $year, $comments, $file]);
 
-        var_dump($addStmt->errorInfo());
+       // var_dump($addStmt->errorInfo());
 
 
     }
@@ -52,18 +52,42 @@ class BookModel
     public function getAllBooks()
     {
 
-        $getStmt = $this->db->prepare("
+        $getAllStmt = $this->db->prepare("
             
             SELECT * FROM library.books;
                   
         
         ");
 
-        $getStmt->execute();
-        $result = $getStmt->fetchAll(\PDO::FETCH_ASSOC);
+        $getAllStmt->execute();
 
-        return $result;
 
+
+        while($book = $getAllStmt->fetchObject(\DTO\book::class)) {
+
+            var_dump($book);
+                yield $book;
+        }
+
+
+    }
+
+    public function  getGenres() : \Generator
+    {
+
+        $getGenresStm = $this->db->prepare("
+        
+            SELECT * FROM library.genres;
+        
+        ");
+
+        $getGenresStm->execute();
+
+        while ($genre = $getGenresStm->fetchObject(\DTO\genre::class)) {
+
+            yield $genre;
+
+        }
     }
 
 

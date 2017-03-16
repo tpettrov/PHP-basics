@@ -1,6 +1,7 @@
 <?php
 
-/* @var $data [] */
+/* @var $data \DTO\Book[] */
+
 
 ?>
 
@@ -17,19 +18,20 @@ Books table:
         <td>Genre</td>
         <td>Year of Release</td>
         <td>Comments</td>
+        <td>File</td>
     </tr>
     </thead>
 
     <?php foreach ($data as $book) :?>
     <tr>
-        <td><?= $book['id'] ?></td>
-        <td><?= $book['title'] ?></td>
-        <td><?= $book['genre'] ?></td>
-        <td><?= $book['author'] ?></td>
-        <td><?= $book['year_release'] ?></td>
-        <td><?= $book['book_language'] ?></td>
-        <td><?= $book['comment'] ?></td>
-        <td><?= $book['image'] ?></td>
+        <td><?= $book->getId(); ?></td>
+        <td><?= $book->getTitle(); ?></td>
+        <td><?= $book->getBookAuthor(); ?></td>
+        <td><?= $book->getBookLanguage(); ?></td>
+        <td><?= $book->getGenre(); ?></td>
+        <td><?= $book->getYear(); ?></td>
+        <td><?= $book->getComments(); ?></td>
+        <td><?= $book->getFile(); ?></td>
     </tr>
     <?php endforeach;?>
 

@@ -25,14 +25,14 @@ class Database
 
     public static function setInstance($host, $user, $pass, $name){
 
-        $dsn = "mysql:host=" . $host . ";dbname=" . $name;
+        $dsn = "mysql:host=" . $host . ";dbname=" . $name . ';charset=utf8';
         self::$instances[$dsn.$user.$pass] = new \PDO($dsn, $user, $pass);
 
     }
 
     public static function getInstance($host, $user, $pass, $name) {
 
-        $dsn = "mysql:host=" . $host . ";dbname=" . $name;
+        $dsn = "mysql:host=" . $host . ";dbname=" . $name . ';charset=utf8';
         return self::$instances[$dsn.$user.$pass];
     }
 

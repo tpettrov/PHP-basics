@@ -10,14 +10,14 @@ require_once('app.php');
 
 if(isset($_POST['addBook'])){
 
-    $bookId = trim($_POST['bookId']);
-    $bookTitle = trim($_POST['bookTitle']);
-    $bookAuthor = trim($_POST['bookAuthor']);
-    $bookLanguage = trim($_POST['bookLanguage']);
-    $genre = trim($_POST['genre']);
-    $year = trim($_POST['year']);
-    $comments = trim($_POST['comment']);
-    $file = trim($_POST['file']);
+    $bookId = $_POST['bookId'];
+    $bookTitle = $_POST['bookTitle'];
+    $bookAuthor = $_POST['bookAuthor'];
+    $bookLanguage = $_POST['bookLanguage'];
+    $genre = $_POST['genre'];
+    $year = $_POST['year'];
+    $comments = $_POST['comment'];
+    $file = $_POST['file'];
 
     if ($bookModel->add($bookId, $bookTitle, $bookAuthor, $bookLanguage, $genre, $year, $comments, $file)){
 
@@ -25,7 +25,8 @@ if(isset($_POST['addBook'])){
 
     } else {
 
-        $app->render('bookInput');
+        $genres = $bookModel->getGenres();
+        $app->render('bookInput', $genres);
 
     }
 
@@ -36,8 +37,7 @@ if(isset($_POST['addBook'])){
 
         $data = $bookModel->getAllBooks();
 
-
-    $app->render('allBooks', $data);
+        $app->render('allBooks', $data);
 
 
 }

@@ -1,3 +1,9 @@
+<?php
+
+/* @var $data \DTO\genre[] */
+
+?>
+
 <form method="post" action="bookControl.php">
     Book Id *
     <input type="text" name="bookId"> <br>
@@ -10,9 +16,10 @@
 
     Genre *
     <select name="genre">
-        <option value="Comedy">Comedy</option>
-        <option value="Drama">Drama</option>
-        <option value="Crime">Crime</option>
+        <?php foreach ($data as $genre) : ?>
+            <option value='<?= $genre->getId();?>'> <?= $genre->getName();?></option>
+
+        <?php endforeach; ?>
     </select>
 
     Year of release *
