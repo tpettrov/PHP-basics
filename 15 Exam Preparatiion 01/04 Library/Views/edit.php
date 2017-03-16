@@ -9,8 +9,6 @@
 /* @var $data2 \DTO\book */
 /* @var $data \DTO\genre[] */
 
-
-
 ?>
 
 <form method="post" action="bookControl.php">

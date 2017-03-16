@@ -145,5 +145,30 @@ class BookModel
         return $updateData;
     }
 
+    public function update($bookId, $bookTitle, $bookAuthor, $bookLanguage, $genre, $year, $comments, $file){
+
+$updateStmt = $this->db->prepare("
+
+        UPDATE books 
+        SET
+                    id = ?,
+                    title = ?,
+                    author = ?,
+                    book_language = ?,
+                    genre_id = ?,         
+                    year_release = ?,
+                    comment = ?,
+                    image = ?
+                    
+                    WHERE id = ?;
+        
+        
+
+");
+
+$updateStmt->execute([$bookId, $bookTitle, $bookAuthor, $bookLanguage, $genre, $year, $comments, $file, $bookId]);
+
+    }
+
 
 }

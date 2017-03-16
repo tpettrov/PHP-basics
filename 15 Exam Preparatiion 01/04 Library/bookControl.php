@@ -49,5 +49,24 @@ if (isset($_POST['addBook'])) {
 
     $app->render('edit', $genres, $updateData);
 
-    //$bookModel->updateBook($_POST['update']);
+
+} else if (isset($_POST['edit'])) {
+
+    $bookId = $_POST['bookId'];
+    $bookTitle = $_POST['bookTitle'];
+    $bookAuthor = $_POST['bookAuthor'];
+    $bookLanguage = $_POST['bookLanguage'];
+    $genre = $_POST['genre'];
+    $year = $_POST['year'];
+    $comments = $_POST['comment'];
+    $file = $_POST['file'];
+
+
+    $bookModel->update($bookId, $bookTitle, $bookAuthor, $bookLanguage, $genre, $year, $comments, $file);
+
+    $data = $bookModel->getAllBooks();
+    $app->render('allBooks', $data );
+
+
+
 }
