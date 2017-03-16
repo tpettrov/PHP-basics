@@ -54,8 +54,24 @@ class BookModel
 
         $getAllStmt = $this->db->prepare("
             
-            SELECT * FROM library.books;
-                  
+            SELECT 
+                books.id,
+                title,
+                author,
+                book_language as bookLanguage,
+                genres.name as genre,
+                year_release as year,
+                comment,
+                image as file
+                
+              
+             FROM library.books
+             INNER JOIN
+             genres
+             ON 
+             books.genre_id = genres.id
+              ORDER BY
+                  books.year_release DESC;
         
         ");
 
@@ -65,7 +81,6 @@ class BookModel
 
         while($book = $getAllStmt->fetchObject(\DTO\book::class)) {
 
-            var_dump($book);
                 yield $book;
         }
 
@@ -88,6 +103,46 @@ class BookModel
             yield $genre;
 
         }
+    }
+
+    public function deleteBook($id) {
+
+        $delStmt = $this->db->prepare("
+        
+                DELETE from books where id = ?;
+                 
+        ");
+
+        $delStmt->execute([$id]);
+
+    }
+
+    public function getUpdateData($id){
+
+        $delStmt = $this->db->prepare("
+        
+                SELECT  
+                
+                id,
+                title,
+                author,
+                book_language as bookLanguage,
+                genre_id as genre,
+                year_release as year,
+                comment
+                
+                
+              
+             FROM library.books where id = ?;
+             
+                 
+        ");
+
+        $delStmt->execute([$id]);
+        $updateData =  $delStmt->fetchObject(\DTO\book::class);
+
+
+        return $updateData;
     }
 
 

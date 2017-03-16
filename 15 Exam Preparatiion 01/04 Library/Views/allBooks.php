@@ -7,7 +7,7 @@
 
 
 Books table:
-
+<form method="post" action="bookControl.php">
 <table border="1">
     <thead>
     <tr>
@@ -26,19 +26,21 @@ Books table:
     <tr>
         <td><?= $book->getId(); ?></td>
         <td><?= $book->getTitle(); ?></td>
-        <td><?= $book->getBookAuthor(); ?></td>
+        <td><?= $book->getAuthor(); ?></td>
         <td><?= $book->getBookLanguage(); ?></td>
         <td><?= $book->getGenre(); ?></td>
         <td><?= $book->getYear(); ?></td>
-        <td><?= $book->getComments(); ?></td>
+        <td><?= $book->getComment(); ?></td>
         <td><?= $book->getFile(); ?></td>
+        <td><button type="submit" name="delete" value ='<?= $book->getId(); ?>'>X</button></td>
+        <td><button type="submit" name="update" value ='<?= $book->getId(); ?>'>U</button></td>
     </tr>
     <?php endforeach;?>
 
 
 </table>
 
-
+</form>
 
 
 

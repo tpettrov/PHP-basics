@@ -14,11 +14,11 @@ class book
 
     private $id;
     private $title;
-    private $bookAuthor;
+    private $author;
     private $bookLanguage;
     private $genre;
     private $year;
-    private $comments;
+    private $comment;
     private $file;
 
     /**
@@ -40,9 +40,9 @@ class book
     /**
      * @return mixed
      */
-    public function getBookAuthor()
+    public function getAuthor()
     {
-        return $this->bookAuthor;
+        return $this->author;
     }
 
     /**
@@ -72,9 +72,9 @@ class book
     /**
      * @return mixed
      */
-    public function getComments()
+    public function getComment()
     {
-        return $this->comments;
+        return $this->comment;
     }
 
     /**
@@ -84,6 +84,8 @@ class book
     {
         return $this->file;
     }
+
+
 
 
 

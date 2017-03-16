@@ -14,7 +14,7 @@ class Application
 
     const TEMPLATES_FOLDER = 'Views';
 
-    public static function render($viewName, $data = null)
+    public static function render($viewName, $data = null, $data2 = null)
     {
 
         include self::TEMPLATES_FOLDER . '/' . $viewName . '.php';
