@@ -6,32 +6,61 @@
  * Time: 00:09
  */
 
+$today = new DateTime(str_replace('/', '-', $_GET['today']));
 
-$today = date_create_from_format('d/m/Y', '07/08/2014');
+//$today = new DateTime(str_replace('/', '-', '07/08/2014'));
+//$input = ["11/05/2013 | Sopharma | Paracetamol | 20.54 lv", "11/05/2013 | Sopharma | Analgin | 57.45 lv", "02/12/2011 | Actavis | Aulin | 120.54 lv", "13/05/2009 | Sopharma | Tamiflu | 221.54 lv", "23/01/2014 | Actavis | Paracetamol | 7.54 lv", "11/05/2013 | Actavis | Paracetamol | 17.54 lv"];
 
-$input = ["11/05/2013 | Sopharma | Paracetamol | 20.54 lv", "11/05/2013 | Sopharma | Analgin | 57.45 lv", "02/12/2011 | Actavis | Aulin | 120.54 lv", "13/05/2009 | Sopharma | Tamiflu | 221.54 lv", "23/01/2014 | Actavis | Paracetamol | 7.54 lv", "11/05/2013 | Actavis | Paracetamol | 17.54 lv"];
+$input = $_GET['invoices'];
 
+$matrix = [];
 
 
 foreach ($input as $invoice) {
 
     $invoice = trim($invoice, '"');
-    $invoice = explode('|', $invoice);
+    $tokens = explode('|', $invoice);
+    $date = new DateTime(str_replace('/', '-', trim($tokens[0])));
+    $diff = $today->diff($date)->format('%y');
 
-    var_dump($invoice);
+    if ($diff > 5 || $diff < 0 || $today < new DateTime(str_replace('/', '-', trim($tokens[0])))) {
+
+        continue;
+    }
+
+    $now = new DateTime($date->format('d') . '-' . $date->format('m') . '-' . $today->format('Y'));
+    if ($diff == 5 && $now < $today) {
+        continue;
+    }
+
+
+    //$date = trim($tokens[0]);
+    $company = trim($tokens[1]);
+    $drug = trim($tokens[2]);
+    $price = floatval(trim($tokens[3]));
+
+        $matrix[$date->format('d-m-Y')][$company]['drugs'][] = $drug;
+
+    if(!isset($matrix[$date->format('d-m-Y')][$company]['price'])) {
+
+        $matrix[$date->format('d-m-Y')][$company]['price'] = $price;
+    } else {
+
+        $matrix[$date->format('d-m-Y')][$company]['price'] += $price;
+    }
+
 
 }
 
 
 
-
-//$result = uksort($dateArr, 'dateSorter');
+ uksort($matrix, 'dateSorter');
 
 function dateSorter($date1, $date2)
 {
 
-    $dateA = DateTime::createFromFormat('d/m/Y', $date1);
-    $dateB = DateTime::createFromFormat('d/m/Y', $date2);
+    $dateA = new DateTime(str_replace('/', '-', $date1));
+    $dateB = new DateTime(str_replace('/', '-', $date2));
 
     if ($dateA < $dateB) {
 
@@ -46,16 +75,48 @@ function dateSorter($date1, $date2)
 
 }
 
+//print_r($matrix);
 
-//foreach ($dateArr as $date => $invoice) {
-//
-//    $diff = date_diff($today, DateTime::createFromFormat('d/m/Y', $date));
-//
-//    if (intval($diff->format('%y')) >= 5) {
-//
-//        unset($dateArr[$date]);
-//    }
-//
-//
-//}
 
+
+$output = '<ul>';
+
+foreach ($matrix as $date=>$info) {
+
+    $date = str_replace("-", "/", $date);
+
+ $output .= '<li>' . '<p>' . $date . '</p>';
+ $output .= '<ul>';
+
+
+    uksort($info, function ($a, $b){
+
+        return strcmp($a,$b);
+    });
+
+
+ foreach ($info as $pharmacy=>$data) {
+
+     //var_dump($pharmacy);
+
+     $output .= '<li><p>' .  $pharmacy . '</p>';
+     $output .= '<ul>';
+
+     sort($data['drugs']);
+
+     $output .= '<li><p>' . implode(',', $data['drugs']) . '-' . $data['price'] . 'lv'. '</p></li>';
+     $output .= '</ul>';
+     $output .= '</li>';
+
+
+ }
+
+    $output .= '</ul>';
+    $output .= '</li>';
+
+}
+
+
+$output .= '</ul>';
+
+echo $output;
