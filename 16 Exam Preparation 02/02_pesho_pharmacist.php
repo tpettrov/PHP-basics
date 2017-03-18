@@ -62,15 +62,7 @@ function dateSorter($date1, $date2)
     $dateA = new DateTime(str_replace('/', '-', $date1));
     $dateB = new DateTime(str_replace('/', '-', $date2));
 
-    if ($dateA < $dateB) {
-
-        return -1;
-
-    } else if ($dateA > $dateB) {
-
-        return 1;
-
-    } else return 0;
+    return $dateA > $dateB;
 
 
 }
