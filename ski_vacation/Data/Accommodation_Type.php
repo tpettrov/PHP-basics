@@ -4,7 +4,7 @@
 namespace Data;
 
 
-class Type
+class Accommodation_Type
 {
     private $id;
 

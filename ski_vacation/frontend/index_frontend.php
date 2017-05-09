@@ -10,7 +10,16 @@
     </fieldset>
 
     <fieldset>
-        Type of accomodation: <select></select>
+        Type of accomodation: <select name="type_id">
+            <?php foreach ($data->getTypes() as $accommodation_Type): ?>
+                <option <?= isset($data->getFormData()['type_id'])
+                && $data->getFormData()['type_id'] == $accommodation_Type->getId()
+                    ? 'selected'
+                    : '';?> value="<?=$accommodation_Type->getId();?>">
+                    <?=$accommodation_Type->getName(); ?>
+                </option>
+            <?php endforeach; ?>
+        </select><br/>
         Number of children: <input type="text" name="lastName">
         Number of adults: <input type="text" name="email">
         Rooms: <input type="text" name="phone">

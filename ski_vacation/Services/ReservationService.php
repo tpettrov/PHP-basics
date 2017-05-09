@@ -6,6 +6,7 @@ namespace Services;
 
 use Adapter\DatabaseInterface;
 
+use Data\Accommodation_Type;
 use Data\IndexViewData;
 
 
@@ -37,7 +38,21 @@ class ReservationService implements ReservationServiceInterface
      */
     public function getIndexViewData()
     {
-        // TODO: Implement getIndexViewData() method.
+        $query = "SELECT id, name FROM accomodation_type";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([]);
+
+
+        $viewData = new IndexViewData();
+        $viewData->setTypes(
+            function() use($stmt) {
+                while ($genre = $stmt->fetchObject(Accommodation_Type::class)) {
+                    yield $genre;
+                }
+            }
+        );
+
+        return $viewData;
     }
 
     /**

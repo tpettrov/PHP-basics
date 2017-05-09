@@ -7,20 +7,20 @@ namespace Data;
 class IndexViewData
 {
     /**
-     * @var \Generator|Genre[]
+     * @var \Generator|Accommodation_Type[]
      */
-    private $genres;
+    private $accommodation_types;
 
     private $errors = null;
 
     private $formData = [];
 
     /**
-     * @return Genre[]|\Generator
+     * @return Accommodation_Type[]|\Generator
      */
-    public function getGenres()
+    public function getTypes()
     {
-        return $this->genres;
+        return $this->accommodation_types;
     }
 
     /**
@@ -42,9 +42,9 @@ class IndexViewData
     /**
      * @param callable $genres
      */
-    public function setGenres(callable $genres)
+    public function setTypes(callable $types)
     {
-        $this->genres = $genres();
+        $this->accommodation_types = $types();
     }
 
     /**

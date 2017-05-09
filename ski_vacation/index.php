@@ -2,5 +2,5 @@
 require_once 'app.php';
 
 
-
-$app->loadTemplate("index_frontend", $data = null);
+$data = $reservationService->getIndexViewData();
+$app->loadTemplate("index_frontend", $data );
